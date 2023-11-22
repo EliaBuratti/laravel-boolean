@@ -25,3 +25,25 @@ return new class extends Migration
         Schema::dropIfExists('_cocktails');
     }
 };
+
+
+/* # tabella
+
+- id
+- name
+- category  
+- alcholic 
+- glass ? 
+- instructions
+- thumb
+- ingredients
+- measures
+
+
+##### come popolare ingridients e measures ( da rivedere con la corretta sintassi )
+cockatilIngredients = [];
+for i = 0 ; i < 15 ; i++{
+    if 'strIngridient{$i}'=! null{
+        cocktailIngridients.push(strIngridient{$i}.value) ;
+    }
+} */
