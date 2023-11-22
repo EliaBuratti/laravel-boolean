@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 $cocktails = [];
 
 //loop for get cocktails
+
 for ($i=0; $i < 20; $i++) { 
     $cocktail_url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
     $coctailContent = file_get_contents($cocktail_url);
@@ -14,3 +15,4 @@ return [
     'cocktails' => $cocktails,
 ];
 ?>
+
