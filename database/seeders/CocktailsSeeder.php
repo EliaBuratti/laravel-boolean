@@ -12,6 +12,6 @@ class CocktailsSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        
     }
 }

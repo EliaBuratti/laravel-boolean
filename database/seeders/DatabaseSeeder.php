@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
             CocktailsSeeder::class,
 
         ]);
+
+        // test commento
     }
 }
