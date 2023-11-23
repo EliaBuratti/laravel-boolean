@@ -10,10 +10,9 @@ class CocktailController extends Controller
 {
     public function index()
     {
-        $cocktail = Cocktail::first();
         return response()->json([
             'success' => true,
-            'result' => $cocktail
+            'result' => Cocktail::all()->orderByDesc('id')->paginate(6)
         ]);
     }
 }
