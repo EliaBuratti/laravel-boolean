@@ -14,29 +14,40 @@ class CocktailsSeeder extends Seeder
      */
     public function run(): void
     {
-        $cocktails = config('cocktails.cocktails');
+        //$cocktails = config('cocktails.cocktails');
 
+        /* api function */
 
+        $cocktails = [];
 
-    foreach($cocktails as $cocktail) {
-    
-    $cocktail_path = $cocktail['drinks'][0];
-    $ingredients = [];
-    $measures = [];
+        //loop for get cocktails
 
-    foreach($cocktail_path as $ingredient => $value) {
+        for ($i = 0; $i < 20; $i++) {
+            $cocktail_url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+            $coctailContent = file_get_contents($cocktail_url);
+            $cocktailEncode = json_decode($coctailContent, true);
+            array_push($cocktails, $cocktailEncode);
+        };
 
-        if(preg_match('/strIngredient/', $ingredient) && $value ) {
-            array_push($ingredients, $value);
-        }
-    }
+        foreach ($cocktails as $cocktail) {
 
-    foreach($cocktail_path as $measure => $value) {
+            $cocktail_path = $cocktail['drinks'][0];
+            $ingredients = [];
+            $measures = [];
 
-        if(preg_match('/strMeasure/', $measure) && $value ) {
-            array_push($measures, $value);
-        }
-    }
+            foreach ($cocktail_path as $ingredient => $value) {
+
+                if (preg_match('/strIngredient/', $ingredient) && $value) {
+                    array_push($ingredients, $value);
+                }
+            }
+
+            foreach ($cocktail_path as $measure => $value) {
+
+                if (preg_match('/strMeasure/', $measure) && $value) {
+                    array_push($measures, $value);
+                }
+            }
             $new_cocktail = new Cocktail();
 
             $new_cocktail->name = $cocktail_path['strDrink'];
@@ -46,12 +57,8 @@ class CocktailsSeeder extends Seeder
             $new_cocktail->instructions = $cocktail_path['strInstructions'];
             $new_cocktail->thumb = $cocktail_path['strDrinkThumb'];
             $new_cocktail->ingredients = json_encode($ingredients);
-            $new_cocktail->measures = json_encode($measures);          
+            $new_cocktail->measures = json_encode($measures);
             $new_cocktail->save();
         }
-            
-
     }
-        
-    }
-
+}
