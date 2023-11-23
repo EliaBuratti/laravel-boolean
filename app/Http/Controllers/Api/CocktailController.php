@@ -12,7 +12,7 @@ class CocktailController extends Controller
     {
         return response()->json([
             'success' => true,
-            'result' => Cocktail::all()->orderByDesc('id')->paginate(6)
+            'result' => Cocktail::orderByDesc('id')->paginate(6)
         ]);
     }
 }
