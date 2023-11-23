@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Cocktail;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Str;
 
 class CocktailsSeeder extends Seeder
 {
@@ -51,6 +51,7 @@ class CocktailsSeeder extends Seeder
             $new_cocktail = new Cocktail();
 
             $new_cocktail->name = $cocktail_path['strDrink'];
+            $new_cocktail->slug = Str::slug($new_cocktail->name, '-');
             $new_cocktail->category = $cocktail_path['strCategory'];
             $new_cocktail->alcholic = $cocktail_path['strAlcoholic'];
             $new_cocktail->glass = $cocktail_path['strGlass'];
