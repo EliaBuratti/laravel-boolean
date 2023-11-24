@@ -25,3 +25,5 @@ Route::get('/cocktails', [CocktailController::class, 'index']);
 Route::get('/cocktails/{cocktail:slug}', [CocktailController::class, 'show']);
 
 Route::post('/contacts', [LeadController::class, 'store']);
+
+Route::get('/cocktails/{cocktail:alcholic}', [CocktailController::class, 'alcholic']);
